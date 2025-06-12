@@ -2,7 +2,8 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Preferences",
     "description": "Schema for CARTA Preferences (Version 2)",
-    "$id": "carta_preferences_2",
+    "$id": "https://cartavis.org/schemas/preferences_schema_2.json",
+    "type": "object",
     "required": ["version"],
     "properties": {
         "version": {
@@ -12,6 +13,7 @@
             "maximum": 2
         },
         "username": {
+            "description": "Deprecated option",
             "type": "string",
             "minLength": 1
         },
@@ -53,6 +55,7 @@
             "enum": ["VRAD", "VOPT", "FREQ", "WAVE", "AWAV", "CHANNEL"]
         },
         "wcsMatchingType": {
+            "description": "Deprecated option",
             "type": "integer",
             "minimum": 0,
             "maximum": 3
@@ -123,6 +126,31 @@
         },
         "contourColormap": {
             "type": "string"
+        },
+        "vectorOverlayPixelAveraging": {
+            "type": "number",
+            "minimum": 2,
+            "default": 4
+        },
+        "vectorOverlayFractionalIntensity": {
+            "type": "boolean",
+            "default": false
+        },
+        "vectorOverlayThickness": {
+            "type": "number",
+            "minimum": 0
+        },
+        "vectorOverlayColormapEnabled": {
+            "type": "boolean"
+        },
+        "vectorOverlayColor": {
+            "type": "string",
+            "description": "TODO: validate color string",
+            "default": "#ffffff"
+        },
+        "vectorOverlayColormap": {
+            "type": "string",
+            "default": "viridis"
         },
         "astColor": {
             "type": "string",
@@ -307,10 +335,100 @@
             "minimum": 0,
             "default": 0
         },
+        "telemetryUuid": {
+            "type": "string"
+        },
+        "telemetryMode": {
+            "type": "string",
+            "enum": ["none", "minimal", "usage"],
+            "default": "usage"
+        },
+        "telemetryConsentShown": {
+            "type": "boolean",
+            "default": false
+        },
+        "telemetryLogging": {
+            "type": "boolean",
+            "default": false
+        },
         "fileFilterMode": {
             "type": "string",
             "enum": ["content", "extension", "all"],
             "default": "content"
+        },
+        "pvAxesOrderReverse": {
+            "type": "boolean"
+        },
+        "autoWCSMatching": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 7
+        },
+        "colormapHex": {
+            "type": "string"
+        },
+        "colormapHexStart": {
+            "type": "string"
+        },
+        "dynamicLayoutEnable": {
+            "type": "boolean"
+        },
+        "isHighDimPriority": {
+            "type": "boolean"
+        },
+        "dynamicLayout": {
+            "type": "object"
+        },
+        "annotationColor": {
+            "type": "string"
+        },
+        "annotationLineWidth": {
+            "type": "number"
+        },
+        "annotationDashLength": {
+            "type": "number"
+        },
+        "pointAnnotationShape": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 7
+        },
+        "pointAnnotationWidth": {
+            "type": "number"
+        },
+        "textAnnotationLineWidth": {
+            "type": "number"
+        },
+        "stopAnimationPlaybackMinutes": {
+            "type": "number"
+        },
+        "pvPreviewCubeSizeLimit": {
+            "type": "number"
+        },
+        "pvPreviewCubeSizeLimitUnit": {
+            "type": "string",
+            "enum": ["TB", "GB", "MB", "kB", "B"]
+        },
+        "logEventList": {
+            "type": "array",
+            "items": {
+                "type": "number"
+            }
+        },
+        "catalogDisplayedColumnSize": {
+            "type": "number"
+        },
+        "catalogTableSeparatorPosition": {
+            "type": "string"
+        },
+        "checkNewRelease": {
+            "type": "boolean"
+        },
+        "latestRelease": {
+            "type": "string"
+        },
+        "compatibilityAipsBeamSupport": {
+            "type": "boolean"
         }
     }
 }

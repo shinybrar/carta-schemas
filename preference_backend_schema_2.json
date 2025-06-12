@@ -2,19 +2,17 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Backend preferences",
     "description": "Schema for CARTA backend preferences (Version 2)",
-    "$id": "carta_backend_preferences_2",
-    "required": [],
+    "$id": "https://cartavis.org/schemas/preference_backend_schema_2.json",
+    "type": "object",
     "properties": {
+        "backendConfigVersion": {
+            "description": "The version of this backend configuration",
+            "type": "string",
+            "default": "2.0"
+        },
         "verbosity": {
             "type": "integer",
-            "enum": [
-                0,
-                1,
-                2,
-                3,
-                4,
-                5
-            ],
+            "enum": [0, 1, 2, 3, 4, 5],
             "default": 4
         },
         "no_log": {
@@ -55,7 +53,17 @@
             "default": "0.0.0.0"
         },
         "port": {
-            "type": ["integer", "array"],
+            "anyOf": [
+                {
+                    "type": "integer"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            ],
             "default": 3002
         },
         "omp_threads": {
@@ -100,6 +108,11 @@
         "enable_scripting": {
             "type": "boolean",
             "default": false
+        },
+        "http_url_prefix": {
+            "type": "string",
+            "minLength": 1,
+            "default": ""
         }
     }
 }
